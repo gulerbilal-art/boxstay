@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Box Access System</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Box Access Payment System</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <h1>Welcome to the Box Access System</h1>
-    <p>Please log in to access your boxes.</p>
-    <form action="/login" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Login</button>
+    <h1>Box Access Payment System</h1>
+    <form id="payment-form">
+        <label for="amount">Enter Amount:</label>
+        <input type="text" id="amount" name="amount" required>
+        <button type="submit">Pay</button>
     </form>
+    <div id="qr-code"></div>
+    <div id="access-code" style="display:none;"></div>
+    <script>
+        $(document).ready(function () {
+            $('#payment-form').submit(function (event) {
+                event.preventDefault();
+                var amount = $('#amount').val();
+                // Generate QR code (mockup)
+                $('#qr-code').html(`<p>QR Code for payment of $${amount}</p>`);
+                $('#access-code').text('Your access code is: ' + Math.random().toString(36).substring(2, 15)).show();
+            });
+        });
+    </script>
 </body>
 </html>
